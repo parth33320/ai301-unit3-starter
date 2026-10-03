@@ -1,53 +1,25 @@
 # Procedure: how this skill grades a plan package
 
-<!--
-THIS IS THE PART YOU WRITE, and it is a new kind of part. Weeks 1 and
-2, SKILL.md carried a numbered workflow and you only wrote judgment
-files. This week the workflow is gone from the frame: SKILL.md says
-"execute procedure.md", and these are the operating steps you author.
-The machinery is in your hands now.
-
-Your operator swap is the design brief. When your executor stalled
-because your rubric said WHAT to decide but not HOW to find the
-evidence, that was a procedure gap. This file is where those gaps get
-closed: a complete procedure lets someone who has never seen a plan
-package before (a groupmate, or the skill itself) grade one exactly the
-way you would.
-
-Under each stage heading below, write the concrete steps for that
-stage. The one-line note under each heading says what a complete
-procedure must decide there. Write steps, not intentions: "read the
-repro evidence before the plan, and note what behavior it pins down"
-is a step; "understand the context" is a wish.
--->
-
 ## Read order
-
-<!-- What gets read, in what order, before any check is graded, and
-what to note down from each part while reading. A complete procedure
-decides the order (issue first? repro evidence first?) and says why
-the order matters for the checks that come later. -->
+1. Issue context and thread highlights: Read first to understand the reported problem, maintainer directions, and repo policies.
+2. Repo-facts block: Read to identify contributing guidelines, required templates, and mandatory AI-use disclosure rules.
+3. Repro-evidence block: Read to establish the empirical ground truth, including steps to reproduce, control runs, and verified facts.
+4. Candidate plan and plan comment: Read last to evaluate the proposed cause, scope, execution steps, test plan, and comment compliance.
 
 ## Evidence gathering
-
-<!-- For each evidence family your rubric's checks name, the concrete
-gathering move: which part of the package (or, live, which page or
-thread location per your evidence guide) to pull the fact from, and
-what to record. A complete procedure leaves no check whose evidence an
-executor would have to hunt for. -->
+- For `grounded_diagnosis`: Compare the plan's diagnosis with all repro evidence facts. Check whether control runs or evidence steps contradict the plan's cause.
+- For `bounded_scope`: Compare proposed changes with the issue description. Identify any extra refactorings, migrations, or unrequested features.
+- For `executability_and_testability`: Check for specific targeted files/modules, clear action steps, and an observable test outcome.
+- For `thread_and_repo_conventions`: Check if thread maintainer directions are addressed, and verify if required AI disclosures are included in the plan comment when repo-facts mandate it.
 
 ## Check execution
-
-<!-- How one check runs against gathered evidence: in what order the
-checks execute, what an executor does when evidence for a check is
-genuinely absent, and when a check may be graded without re-reading
-the whole package. A complete procedure makes two executors grade the
-same package the same way. -->
+1. Execute `grounded_diagnosis`: Fail if diagnosis contradicts repro evidence or control runs.
+2. Execute `bounded_scope`: Fail if scope creep or unnecessary redesign/migration is present.
+3. Execute `executability_and_testability`: Fail if files/approach are missing/vague or test plan lacks observable criteria.
+4. Execute `thread_and_repo_conventions`: Fail if thread maintainer direction is ignored or required AI-use disclosure is missing.
 
 ## Verdict assembly
-
-<!-- How the per-check grades become the final accept or reject:
-apply your rubric's verdict rule, state how unclear grades enter it,
-and say what gets quoted in the output for the deciding check. A
-complete procedure produces the same verdict from the same grades,
-every time. -->
+1. Evaluate all check grades.
+2. If all required checks grade `pass`, emit verdict `accept`.
+3. If any required check grades `fail` or `unclear`, emit verdict `reject`.
+4. List evidence and failed check names clearly in the output.
